@@ -1,30 +1,36 @@
 package 알고리즘_백준;
 
 import java.io.*;
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Silver4_수찾기_1920 {
     public static void main(String[] args) throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         int N = Integer.parseInt(br.readLine());
-        ArrayList<Integer> arrayList = new ArrayList<>();
-        int num = Integer.parseInt(String.valueOf(br.readLine().split(" ")));
-        for (int i=0; i<N; i++){
-            num = 0;
+        int[] arr = new int[N];
+
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        for(int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
         }
+
+        Arrays.sort(arr);
+
         int M = Integer.parseInt(br.readLine());
-        for (int i=0; i<M; i++){
-            if (arrayList.contains(br.read()-48)){
-                bw.write(1+"\n");
+
+        st = new StringTokenizer(br.readLine(), " ");
+
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < M; i++) {
+            if(Arrays.binarySearch(arr, Integer.parseInt(st.nextToken())) >= 0) {
+                sb.append(1).append('\n');
             }
             else {
-                bw.write(0+"\n");
+                sb.append(0).append('\n');
             }
         }
-        bw.flush();
-        bw.close();
+        System.out.println(sb);
     }
 }
